@@ -4,6 +4,11 @@ import com.telefonia_vivas.constants.ConstanteRegion;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -12,10 +17,16 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name = ConstanteRegion.REGIONES)
 public class Region {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegion;
 
-    @Column(name = ConstanteRegion.NOMBRE, length = 100, nullable = false)
-    private String nombre;
+    @Column(name = ConstanteRegion.NOMBRE_REGION, length = 100, nullable = false, unique = true)
+    private String nombreRegion;
+
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<Comuna> comunas = new HashSet<>();
+
+
 }

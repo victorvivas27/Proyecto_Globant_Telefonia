@@ -21,12 +21,17 @@ configurations {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'

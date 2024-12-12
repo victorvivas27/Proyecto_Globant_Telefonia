@@ -17,7 +17,12 @@ public class Comuna {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComuna;
 
-    @Column(name = ConstanteComuna.NOMBRE, length = 100, nullable = false)
-    private String nombre;
+    @Column(name = ConstanteComuna.NOMBRE_COMUNA, length = 100, nullable = false, unique = true)
+    private String nombreComuna;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_region", nullable = false)
+    private Region region;
 
 }
