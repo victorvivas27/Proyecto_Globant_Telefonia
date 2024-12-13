@@ -34,6 +34,7 @@ public class ValidadorComuna {
                 .orElseThrow(() -> new ResourceNotFoundException(ConstanteRegion.ID_REGION_NO_EXISTE + idRegion));
     }
 
+
     /**
      * Valida que el nombre de la comuna no sea nulo y no exista en la base de datos.
      *
@@ -49,6 +50,7 @@ public class ValidadorComuna {
             throw new NombreExistenteException(ConstanteComuna.NOMBRE_EXISTE);
         }
     }
+
 
     /**
      * Validación principal de entrada de datos para la creación de una comuna.
