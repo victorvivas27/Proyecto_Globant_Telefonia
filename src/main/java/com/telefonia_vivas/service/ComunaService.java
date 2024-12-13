@@ -3,7 +3,6 @@ package com.telefonia_vivas.service;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
-import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
