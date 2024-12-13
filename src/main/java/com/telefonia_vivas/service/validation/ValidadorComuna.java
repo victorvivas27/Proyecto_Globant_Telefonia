@@ -3,6 +3,7 @@ package com.telefonia_vivas.service.validation;
 import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
+import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.NombreExistenteException;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
@@ -72,4 +73,8 @@ public class ValidadorComuna {
         }
     }
 
+    public void validateComunaDtoModificar(ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
+        validateNombreComuna(comunaDtoModificar.getNombreComuna());
+        validarIdComuna(comunaDtoModificar.getIdComuna());
+    }
 }

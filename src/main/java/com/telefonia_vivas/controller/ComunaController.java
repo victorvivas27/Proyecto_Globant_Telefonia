@@ -2,6 +2,7 @@ package com.telefonia_vivas.controller;
 
 import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
+import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IComunaController;
@@ -74,8 +75,19 @@ public class ComunaController implements IComunaController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<ComunaDtoSalida>> comunaModificar(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
-        return null;
+    @PutMapping("/modificar")
+    public ResponseEntity<ApiResponse<ComunaDtoSalida>> comunaModificar(
+            @RequestBody @Valid ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
+
+        ComunaDtoSalida comunaDtoSalida = comunaService.actualizarComuna(comunaDtoModificar);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(new ApiResponse<>(
+                        ConstanteComuna.COMUNA_MODIFICADA,
+                        HttpStatus.CREATED.value(),
+                        comunaDtoSalida
+                ));
     }
 
     @Override
