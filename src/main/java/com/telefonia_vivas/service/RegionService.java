@@ -53,8 +53,13 @@ public class RegionService implements IRegion {
     }
 
     @Override
-    public RegionDtoSalida obtenerRegionPorId(Long idCliente) throws ResourceNotFoundException {
-        return null;
+    public RegionDtoSalida obtenerRegionPorId(Long idRegion) throws ResourceNotFoundException {
+        validadorRegion.validarIdRegion(idRegion);
+
+        Region region = regionRepository.findById(idRegion).orElse(null);
+
+
+        return modelMapper.map(region,RegionDtoSalida.class);
     }
 
     @Override

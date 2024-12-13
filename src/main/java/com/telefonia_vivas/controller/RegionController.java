@@ -55,8 +55,20 @@ public class RegionController implements IRegionController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<RegionDtoSalida>> buscarRegionID(Long idRegion) throws ResourceNotFoundException {
-        return null;
+    @GetMapping("/buscar/{idRegion}")
+    public ResponseEntity<ApiResponse<RegionDtoSalida>> buscarRegionID(
+            @PathVariable Long idRegion) throws ResourceNotFoundException {
+
+        RegionDtoSalida regionDtoSalida = regionService.obtenerRegionPorId(idRegion);
+
+        ApiResponse<RegionDtoSalida> response = new ApiResponse<>(
+
+                ConstanteRegion.REGION_ENCONTRADA,
+                HttpStatus.OK.value(),
+                regionDtoSalida
+        );
+
+        return ResponseEntity.ok().body(response);
     }
 
     @Override

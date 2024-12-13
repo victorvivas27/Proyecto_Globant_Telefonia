@@ -11,6 +11,7 @@ public class ConstanteRegion {
     public static final String ID_REGION_NO_EXISTE = "No se encontro la region con id: ";
     public static final String NOMBRE_REGION_NOT_NULL = "El nombre de la region no puede ser nulo";
     public static final String NOMBRE_EXISTE = "El nombre de la region ya existe";
+    public static final String REGION_ENCONTRADA = "Region encontrada";
 
 
 }
