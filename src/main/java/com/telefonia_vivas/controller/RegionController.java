@@ -72,8 +72,19 @@ public class RegionController implements IRegionController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<RegionDtoSalida>> regionModificar(RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
-        return null;
+    @PutMapping("/modificar")
+    public ResponseEntity<ApiResponse<RegionDtoSalida>> regionModificar(
+            @RequestBody @Valid RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
+
+        RegionDtoSalida regionDtoSalida = regionService.actualizarRegion(regionDtoModificar);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(new ApiResponse<>(
+                        ConstanteRegion.REGION_MODIFICADA,
+                        HttpStatus.CREATED.value(),
+                        regionDtoSalida
+                ));
     }
 
     @Override

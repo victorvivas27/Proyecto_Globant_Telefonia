@@ -2,6 +2,7 @@ package com.telefonia_vivas.service.validation;
 
 import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.RegionDtoEntrada;
+import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
 import com.telefonia_vivas.exception.NombreExistenteException;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.RegionRepository;
@@ -30,6 +31,7 @@ public class ValidadorRegion {
         }
     }
 
+
     /**
      * Valida si el ID de una región es válido y existe en la base de datos.
      *
@@ -46,6 +48,7 @@ public class ValidadorRegion {
         }
     }
 
+
     /**
      * Validación principal de entrada de datos para la creación de una region.
      *
@@ -55,5 +58,18 @@ public class ValidadorRegion {
      */
     public void validateRegionDto(RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
         validateNombreRegion(regionDtoEntrada.getNombreRegion());
+    }
+
+
+    /**
+     * Validación principal de entrada de datos para la modificacion de una region.
+     *
+     * @param regionDtoModificar DTO de entrada.
+     * @return Región válida asociada al ID de la región.
+     * @throws IllegalArgumentException o ResourceNotFoundException si las validaciones fallan.
+     */
+    public void validateRegionDtoModificar(RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
+        validateNombreRegion(regionDtoModificar.getNombreRegion());
+        validarIdRegion(regionDtoModificar.getIdRegion());
     }
 }

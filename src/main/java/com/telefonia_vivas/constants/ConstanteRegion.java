@@ -13,6 +13,6 @@ public class ConstanteRegion {
     public static final String NOMBRE_EXISTE = "El nombre de la region ya existe";
     public static final String REGION_ENCONTRADA = "Region encontrada";
     public static final String REGION_ELIMINADA = "Region eliminada";
-
+    public static final String REGION_MODIFICADA = "Region modificada";
 
 }
