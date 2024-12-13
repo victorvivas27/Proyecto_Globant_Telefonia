@@ -1,6 +1,5 @@
 package com.telefonia_vivas.service;
 
-import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.RegionDtoEntrada;
 import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
 import com.telefonia_vivas.dto.salida.RegionDtoSalida;
@@ -8,7 +7,9 @@ import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IRegion;
 import com.telefonia_vivas.repository.RegionRepository;
-import com.telefonia_vivas.util.SalidaJson;
+import com.telefonia_vivas.service.mapper.FabricaRegion;
+import com.telefonia_vivas.service.mapper.FabricaSalidaRegion;
+import com.telefonia_vivas.service.validation.ValidadorRegion;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,24 +25,28 @@ import java.util.List;
 public class RegionService implements IRegion {
     private static final Logger LOGGER = LoggerFactory.getLogger(RegionService.class);
     private final ModelMapper modelMapper;
-    private final RegionServiceSave regionServiceSave;
     private final RegionRepository regionRepository;
+    private final ValidadorRegion validadorRegion;
+    private final FabricaRegion fabricaRegion;
+    private final FabricaSalidaRegion fabricaSalidaRegion;
+
 
     @Override
-    public RegionDtoSalida crearRegion(RegionDtoEntrada regionDtoEntrada) {
-        Region region = modelMapper.map(regionDtoEntrada, Region.class);
-        Region regionCreado = regionServiceSave.crearRegion(region);
+    public RegionDtoSalida crearRegion(RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
 
-        RegionDtoSalida regionDtoSalida = modelMapper.map(regionCreado, RegionDtoSalida.class);
+        validadorRegion.validateRegionDto(regionDtoEntrada);
 
-        LOGGER.info(ConstanteRegion.REGIONES + "\n" + SalidaJson.toString(regionDtoSalida));
+        Region regionCrear = fabricaRegion.regionCrear(regionDtoEntrada);
 
-        return regionDtoSalida;
+        Region regionSave = regionRepository.save(regionCrear);
+
+        return fabricaSalidaRegion.construirRegionDto(regionSave);
     }
 
     @Override
     public List<RegionDtoSalida> listarRegios() {
         List<Region> regions = regionRepository.findAll();
+
         return regions.stream()
                 .map(region -> modelMapper.map(region, RegionDtoSalida.class))
                 .toList();

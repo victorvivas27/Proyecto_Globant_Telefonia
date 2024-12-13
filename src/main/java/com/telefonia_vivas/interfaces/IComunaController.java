@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IComunaController {
 
-    ResponseEntity<ApiResponse<ComunaDtoSalida>> crearComuna(ComunaDtoEntrada comunaDtoEntrada);
+    ResponseEntity<ApiResponse<ComunaDtoSalida>> crearComuna(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException;
 
     ResponseEntity<ApiResponse<List<ComunaDtoSalida>>> listarComuna();
 

@@ -26,7 +26,7 @@ public class ComunaController implements IComunaController {
     @Override
     @PostMapping("/crear")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> crearComuna(
-            @RequestBody @Valid ComunaDtoEntrada comunaDtoEntrada) {
+            @RequestBody @Valid ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
 
 
         ComunaDtoSalida comunaDtoSalida = comunaService.crearComuna(comunaDtoEntrada);

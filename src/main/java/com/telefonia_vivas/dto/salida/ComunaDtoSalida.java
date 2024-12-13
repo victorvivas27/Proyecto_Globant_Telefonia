@@ -15,6 +15,5 @@ public class ComunaDtoSalida {
 
     private String nombreComuna;
 
-    private RegionDtoSalida region;
 
 }

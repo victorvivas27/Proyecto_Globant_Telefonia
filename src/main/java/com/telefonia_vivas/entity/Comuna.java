@@ -22,7 +22,7 @@ public class Comuna {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_region", nullable = false)
+    @JoinColumn(name = "id_region")
     private Region region;
 
 }

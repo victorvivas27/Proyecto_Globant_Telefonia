@@ -8,7 +8,7 @@ import com.telefonia_vivas.exception.ResourceNotFoundException;
 import java.util.List;
 
 public interface IRegion {
-    RegionDtoSalida crearRegion(RegionDtoEntrada regionDtoEntrada);
+    RegionDtoSalida crearRegion(RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException;
 
     List<RegionDtoSalida> listarRegios();
 

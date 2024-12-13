@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,5 +16,7 @@ public class RegionDtoSalida {
     private Long idRegion;
 
     private String nombreRegion;
+
+    private List<ComunaDtoSalida> comunas;
 
 }

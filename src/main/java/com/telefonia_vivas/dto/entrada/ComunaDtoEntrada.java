@@ -12,12 +12,13 @@ import lombok.*;
 @NoArgsConstructor
 public class ComunaDtoEntrada {
 
+    @NotNull(message = "{validation.comuna.idRegion.not_null}")
+    private Long idRegion;
+
     @NotNull(message = "{validation.comuna.nombreComuna.not_null}")
     @Size(min = 2, max = 50, message = "{validation.comuna.nombreComuna.size}")
     @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+$", message = "{validation.comuna.nombreComuna.pattern}")
     private String nombreComuna;
 
-    @NotNull(message = "{validation.comuna.idRegion.not_null}")
-    private Long idRegion;
 
 }

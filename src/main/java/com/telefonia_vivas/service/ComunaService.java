@@ -1,15 +1,18 @@
 package com.telefonia_vivas.service;
 
-import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
-import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
+import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IComuna;
 import com.telefonia_vivas.repository.ComunaRepository;
-import com.telefonia_vivas.util.SalidaJson;
+import com.telefonia_vivas.repository.RegionRepository;
+import com.telefonia_vivas.service.mapper.FabricaComuna;
+import com.telefonia_vivas.service.mapper.FabricaSalidaComuna;
+import com.telefonia_vivas.service.validation.ValidadorComuna;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -19,27 +22,26 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class ComunaService implements IComuna {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComunaService.class);
-    private final ComunaServiceSave comunaServiceSave;
     private final ModelMapper modelMapper;
     private final ComunaRepository comunaRepository;
+    private final RegionRepository regionRepository;
+    private final ValidadorComuna validadorComuna;
+    private final FabricaComuna fabricaComuna;
+    private final FabricaSalidaComuna fabricaSalidaComuna;
 
     @Override
-    public ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada) {
-        Comuna comuna = modelMapper.map(comunaDtoEntrada, Comuna.class);
-        Comuna comunaCreada = comunaServiceSave.crearComuna(comuna);
+    public ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
+        Region region = validadorComuna.validateComunaDto(comunaDtoEntrada);
 
-        ComunaDtoSalida comunaDtoSalida = modelMapper.map(comunaCreada, ComunaDtoSalida.class);
-        RegionDtoSalida regionDtoSalida = modelMapper.map(comunaCreada.getRegion(), RegionDtoSalida.class);
+        Comuna comuna = fabricaComuna.comunaAgregar(comunaDtoEntrada, region);
 
+        Comuna comunaSave = comunaRepository.save(comuna);
 
-        comunaDtoSalida.setRegion(regionDtoSalida);
-
-        LOGGER.info(ConstanteComuna.COMUNAS + "\n" + SalidaJson.toString(comunaDtoSalida));
-
-        return comunaDtoSalida;
+        return fabricaSalidaComuna.construirComunaDto(comunaSave);
     }
 
 

@@ -26,7 +26,7 @@ public class RegionController implements IRegionController {
     @Override
     @PostMapping("/crear")
     public ResponseEntity<ApiResponse<RegionDtoSalida>> crearRegion(
-            @RequestBody @Valid RegionDtoEntrada regionDtoEntrada) {
+            @RequestBody @Valid RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
 
         RegionDtoSalida regionDtoSalida = regionService.crearRegion(regionDtoEntrada);
 

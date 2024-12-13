@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IComuna {
 
-    ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada);
+    ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException;
 
     List<ComunaDtoSalida> listarComuna();
 

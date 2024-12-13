@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IRegionController {
 
-    ResponseEntity<ApiResponse<RegionDtoSalida>> crearRegion(RegionDtoEntrada regionDtoEntrada);
+    ResponseEntity<ApiResponse<RegionDtoSalida>> crearRegion(RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException;
 
     ResponseEntity<ApiResponse<List<RegionDtoSalida>>> listarRegion();
 
