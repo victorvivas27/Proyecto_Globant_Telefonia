@@ -1,5 +1,6 @@
 package com.telefonia_vivas.service;
 
+import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.RegionDtoEntrada;
 import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
 import com.telefonia_vivas.dto.salida.RegionDtoSalida;
@@ -64,7 +65,17 @@ public class RegionService implements IRegion {
 
     @Override
     public RegionDtoSalida actualizarRegion(RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
-        return null;
+        validadorRegion.validateRegionDtoModificar(regionDtoModificar);
+
+        Region regionExistente = regionRepository.findById(regionDtoModificar.getIdRegion())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ConstanteRegion.ID_REGION_NO_EXISTE + regionDtoModificar.getIdRegion()));
+
+        regionExistente = fabricaRegion.regionModificar(regionDtoModificar, regionExistente);
+
+        Region regionSave = regionRepository.save(regionExistente);
+
+        return fabricaSalidaRegion.construirRegionDto(regionSave);
     }
 
     @Override
