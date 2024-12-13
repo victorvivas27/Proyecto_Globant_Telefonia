@@ -3,7 +3,6 @@ package com.telefonia_vivas.service;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
-import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
@@ -72,6 +71,10 @@ public class ComunaService implements IComuna {
 
     @Override
     public void eliminarComuna(Long idComuna) throws ResourceNotFoundException {
+        validadorComuna.validarIdComuna(idComuna);
 
+        comunaRepository.deleteById(idComuna);
+
+        LOGGER.warn("Comuna eliminada con el id: " + idComuna);
     }
 }

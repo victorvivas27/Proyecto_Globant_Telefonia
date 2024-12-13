@@ -1,10 +1,8 @@
 package com.telefonia_vivas.controller;
 
 import com.telefonia_vivas.constants.ConstanteComuna;
-import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
-import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IComunaController;
 import com.telefonia_vivas.service.ComunaService;
@@ -61,7 +59,7 @@ public class ComunaController implements IComunaController {
     @Override
     @GetMapping("/buscar/{idComuna}")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> buscarComunaID(
-           @PathVariable Long idComuna) throws ResourceNotFoundException {
+            @PathVariable Long idComuna) throws ResourceNotFoundException {
 
         ComunaDtoSalida comunaDtoSalida = comunaService.obtenerComunaPorId(idComuna);
 
@@ -81,7 +79,17 @@ public class ComunaController implements IComunaController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<Long>> eliminarComuna(Long idComuna) throws ResourceNotFoundException {
-        return null;
+    @DeleteMapping("/eliminar/{idComuna}")
+    public ResponseEntity<ApiResponse<Long>> eliminarComuna(
+            @PathVariable Long idComuna) throws ResourceNotFoundException {
+
+        comunaService.eliminarComuna(idComuna);
+
+        ApiResponse<Long> response = new ApiResponse(
+                ConstanteComuna.COMUNA_ELIMINADA,
+                HttpStatus.OK.value(),
+                idComuna
+        );
+        return ResponseEntity.ok(response);
     }
 }
