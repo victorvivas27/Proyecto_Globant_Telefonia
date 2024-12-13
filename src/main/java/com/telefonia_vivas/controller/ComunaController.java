@@ -1,8 +1,10 @@
 package com.telefonia_vivas.controller;
 
 import com.telefonia_vivas.constants.ConstanteComuna;
+import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
+import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IComunaController;
 import com.telefonia_vivas.service.ComunaService;
@@ -57,8 +59,20 @@ public class ComunaController implements IComunaController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<ComunaDtoSalida>> buscarComunaID(Long idComuna) throws ResourceNotFoundException {
-        return null;
+    @GetMapping("/buscar/{idComuna}")
+    public ResponseEntity<ApiResponse<ComunaDtoSalida>> buscarComunaID(
+           @PathVariable Long idComuna) throws ResourceNotFoundException {
+
+        ComunaDtoSalida comunaDtoSalida = comunaService.obtenerComunaPorId(idComuna);
+
+        ApiResponse<ComunaDtoSalida> response = new ApiResponse<>(
+
+                ConstanteComuna.COMUNA_ENCONTRADA,
+                HttpStatus.OK.value(),
+                comunaDtoSalida
+        );
+
+        return ResponseEntity.ok().body(response);
     }
 
     @Override

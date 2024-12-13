@@ -3,6 +3,7 @@ package com.telefonia_vivas.service;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
+import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
@@ -56,7 +57,12 @@ public class ComunaService implements IComuna {
 
     @Override
     public ComunaDtoSalida obtenerComunaPorId(Long idComuna) throws ResourceNotFoundException {
-        return null;
+        validadorComuna.validarIdComuna(idComuna);
+
+        Comuna comuna = comunaRepository.findById(idComuna).orElse(null);
+
+
+        return modelMapper.map(comuna, ComunaDtoSalida.class);
     }
 
     @Override
