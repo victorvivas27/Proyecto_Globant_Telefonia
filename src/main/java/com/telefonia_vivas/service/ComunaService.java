@@ -71,6 +71,10 @@ public class ComunaService implements IComuna {
 
     @Override
     public void eliminarComuna(Long idComuna) throws ResourceNotFoundException {
+        validadorComuna.validarIdComuna(idComuna);
 
+        comunaRepository.deleteById(idComuna);
+
+        LOGGER.warn("Comuna eliminada con el id: " + idComuna);
     }
 }

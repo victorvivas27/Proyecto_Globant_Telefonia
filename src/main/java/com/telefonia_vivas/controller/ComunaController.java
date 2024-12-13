@@ -79,7 +79,17 @@ public class ComunaController implements IComunaController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<Long>> eliminarComuna(Long idComuna) throws ResourceNotFoundException {
-        return null;
+    @DeleteMapping("/eliminar/{idComuna}")
+    public ResponseEntity<ApiResponse<Long>> eliminarComuna(
+            @PathVariable Long idComuna) throws ResourceNotFoundException {
+
+        comunaService.eliminarComuna(idComuna);
+
+        ApiResponse<Long> response = new ApiResponse(
+                ConstanteComuna.COMUNA_ELIMINADA,
+                HttpStatus.OK.value(),
+                idComuna
+        );
+        return ResponseEntity.ok(response);
     }
 }
