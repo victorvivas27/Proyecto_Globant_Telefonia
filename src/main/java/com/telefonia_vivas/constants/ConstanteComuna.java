@@ -11,5 +11,6 @@ public class ConstanteComuna {
     public static final String ID_COMUNA_NO_EXISTE = "El id de la comuna no existe: ";
     public static final String COMUNA_ENCONTRADA = "Comuna encontrada";
     public static final String COMUNA_ELIMINADA = "Comuna eliminada";
+    public static final String COMUNA_MODIFICADA = "Comuna modificada";
 
 }

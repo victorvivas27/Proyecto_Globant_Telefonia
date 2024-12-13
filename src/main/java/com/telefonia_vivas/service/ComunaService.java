@@ -1,5 +1,6 @@
 package com.telefonia_vivas.service;
 
+import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
@@ -66,7 +67,17 @@ public class ComunaService implements IComuna {
 
     @Override
     public ComunaDtoSalida actualizarComuna(ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
-        return null;
+        validadorComuna.validateComunaDtoModificar(comunaDtoModificar);
+
+        Comuna comunaExistente = comunaRepository.findById(comunaDtoModificar.getIdComuna())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ConstanteComuna.ID_COMUNA_NO_EXISTE + comunaDtoModificar.getIdComuna()));
+
+        comunaExistente = fabricaComuna.comunaModificar(comunaDtoModificar, comunaExistente);
+
+        Comuna comunaSave = comunaRepository.save(comunaExistente);
+
+        return fabricaSalidaComuna.construirComunaDto(comunaSave);
     }
 
     @Override
