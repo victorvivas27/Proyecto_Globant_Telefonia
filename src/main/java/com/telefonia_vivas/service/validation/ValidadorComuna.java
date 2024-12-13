@@ -63,4 +63,11 @@ public class ValidadorComuna {
         validateNombreComuna(comunaDtoEntrada.getNombreComuna());
         return validateIdRegion(comunaDtoEntrada.getIdRegion());
     }
+
+    public void validarIdComuna(Long idComuna) throws ResourceNotFoundException {
+
+        if (idComuna == null || !comunaRepository.existsById(idComuna)) {
+            throw new ResourceNotFoundException(ConstanteComuna.ID_COMUNA_NO_EXISTE + idComuna);
+        }
+    }
 }

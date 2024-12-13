@@ -8,5 +8,7 @@ public class ConstanteComuna {
     public static final String COMUNA_CREADA = "Comuna creada con exito";
     public static final String COMUNAS_LIST = "Lista de comunas";
     public static final String NOMBRE_COMUNA_NOT_NULL = "El nombre de la comuna no puede ser nulo";
+    public static final String ID_COMUNA_NO_EXISTE = "El id de la comuna no existe: ";
+    public static final String COMUNA_ENCONTRADA = "Comuna encontrada";
 
 }
