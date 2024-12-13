@@ -59,7 +59,7 @@ public class RegionService implements IRegion {
         Region region = regionRepository.findById(idRegion).orElse(null);
 
 
-        return modelMapper.map(region,RegionDtoSalida.class);
+        return modelMapper.map(region, RegionDtoSalida.class);
     }
 
     @Override
@@ -69,6 +69,8 @@ public class RegionService implements IRegion {
 
     @Override
     public void eliminarRegion(Long idRegion) throws ResourceNotFoundException {
+        validadorRegion.validarIdRegion(idRegion);
 
+        regionRepository.deleteById(idRegion);
     }
 }

@@ -77,7 +77,17 @@ public class RegionController implements IRegionController {
     }
 
     @Override
-    public ResponseEntity<ApiResponse<Long>> eliminarRegion(Long idRegion) throws ResourceNotFoundException {
-        return null;
+    @DeleteMapping("/eliminar/{idRegion}")
+    public ResponseEntity<ApiResponse<Long>> eliminarRegion(
+            @PathVariable Long idRegion) throws ResourceNotFoundException {
+
+        regionService.eliminarRegion(idRegion);
+
+        ApiResponse<Long> response = new ApiResponse(
+                ConstanteRegion.REGION_ELIMINADA,
+                HttpStatus.OK.value(),
+                idRegion
+        );
+        return ResponseEntity.ok(response);
     }
 }
