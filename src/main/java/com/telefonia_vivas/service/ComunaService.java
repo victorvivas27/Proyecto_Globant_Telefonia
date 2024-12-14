@@ -1,21 +1,13 @@
 package com.telefonia_vivas.service;
 
-import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
-import com.telefonia_vivas.entity.Comuna;
-import com.telefonia_vivas.entity.Region;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.interfaces.IComuna;
-import com.telefonia_vivas.repository.ComunaRepository;
-import com.telefonia_vivas.repository.RegionRepository;
-import com.telefonia_vivas.service.mapper.FabricaComuna;
-import com.telefonia_vivas.service.mapper.FabricaSalidaComuna;
-import com.telefonia_vivas.service.validation.ValidadorComuna;
+import com.telefonia_vivas.service.comunaservice.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,65 +19,41 @@ import java.util.List;
 @AllArgsConstructor
 public class ComunaService implements IComuna {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComunaService.class);
-    private final ModelMapper modelMapper;
-    private final ComunaRepository comunaRepository;
-    private final RegionRepository regionRepository;
-    private final ValidadorComuna validadorComuna;
-    private final FabricaComuna fabricaComuna;
-    private final FabricaSalidaComuna fabricaSalidaComuna;
+
+    private final ComunaCreationService comunaCreationService;
+    private final ComunaListService comunaListService;
+    private final ComunaGetByIdService comunaGetByIdService;
+    private final ComunaUpdateService comunaUpdateService;
+    private final ComunaDeleteService comunaDeleteService;
 
     @Override
     public ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
-        Region region = validadorComuna.validateComunaDto(comunaDtoEntrada);
 
-        Comuna comuna = fabricaComuna.comunaAgregar(comunaDtoEntrada, region);
-
-        Comuna comunaSave = comunaRepository.save(comuna);
-
-        return fabricaSalidaComuna.construirComunaDto(comunaSave);
+        return comunaCreationService.crearComuna(comunaDtoEntrada);
     }
 
 
     @Override
     public List<ComunaDtoSalida> listarComuna() {
-        List<Comuna> comunas = comunaRepository.findAll();
 
-        return comunas.stream()
-                .map(comuna -> modelMapper.map(comuna, ComunaDtoSalida.class))
-                .toList();
+        return comunaListService.listarComunas();
     }
 
     @Override
     public ComunaDtoSalida obtenerComunaPorId(Long idComuna) throws ResourceNotFoundException {
-        validadorComuna.validarIdComuna(idComuna);
 
-        Comuna comuna = comunaRepository.findById(idComuna).orElse(null);
-
-
-        return modelMapper.map(comuna, ComunaDtoSalida.class);
+        return comunaGetByIdService.obtenerComunaPorId(idComuna);
     }
 
     @Override
     public ComunaDtoSalida actualizarComuna(ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
-        validadorComuna.validateComunaDtoModificar(comunaDtoModificar);
 
-        Comuna comunaExistente = comunaRepository.findById(comunaDtoModificar.getIdComuna())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        ConstanteComuna.ID_COMUNA_NO_EXISTE + comunaDtoModificar.getIdComuna()));
-
-        comunaExistente = fabricaComuna.comunaModificar(comunaDtoModificar, comunaExistente);
-
-        Comuna comunaSave = comunaRepository.save(comunaExistente);
-
-        return fabricaSalidaComuna.construirComunaDto(comunaSave);
+        return comunaUpdateService.actualizarComuna(comunaDtoModificar);
     }
 
     @Override
     public void eliminarComuna(Long idComuna) throws ResourceNotFoundException {
-        validadorComuna.validarIdComuna(idComuna);
 
-        comunaRepository.deleteById(idComuna);
-
-        LOGGER.warn("Comuna eliminada con el id: " + idComuna);
+        comunaDeleteService.eliminarComuna(idComuna);
     }
 }
