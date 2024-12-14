@@ -24,7 +24,7 @@ public class FabricaComuna {
     public Comuna comunaModificar(ComunaDtoModificar comunaDtoModificar, Comuna comunaExistente) {
 
         comunaExistente.setNombreComuna(comunaDtoModificar.getNombreComuna());
-        // Modifica otros campos según sea necesario
+
         return comunaExistente;
     }
 }
