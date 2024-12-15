@@ -5,7 +5,9 @@ import com.telefonia_vivas.dto.modificar.ServicioDtoModificar;
 import com.telefonia_vivas.dto.salida.ServicioDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.service.servicioservice.ServicioCreationService;
+import com.telefonia_vivas.service.servicioservice.ServicioGetByIdService;
 import com.telefonia_vivas.service.servicioservice.ServicioListService;
+import com.telefonia_vivas.service.servicioservice.ServicioUpdateService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.List;
 public class ServicioService {
     private final ServicioCreationService servicioCreationService;
     private final ServicioListService servicioListService;
+    private final ServicioGetByIdService servicioGetByIdService;
+    private final ServicioUpdateService servicioUpdateService;
 
 
     public ServicioDtoSalida crearServicio(ServicioDtoEntrada servicioDtoEntrada) {
@@ -28,12 +32,17 @@ public class ServicioService {
         return servicioListService.listarServicio();
     }
 
-    public ServicioDtoSalida obtenerServicioPorId(Long idServicio) throws ResourceNotFoundException {
-        return null;
+    public ServicioDtoSalida obtenerServicioPorId(Long idServicio)
+            throws ResourceNotFoundException {
+
+        return servicioGetByIdService.obtenerServicioPorId(idServicio);
+
     }
 
-    public ServicioDtoSalida actualizarServicio(ServicioDtoModificar ServicioDtoModificar) throws ResourceNotFoundException {
-        return null;
+    public ServicioDtoSalida actualizarServicio(ServicioDtoModificar servicioDtoModificar)
+            throws ResourceNotFoundException {
+
+        return servicioUpdateService.actualizarServicio(servicioDtoModificar);
     }
 
     public void eliminarServicio(Long idServicio) throws ResourceNotFoundException {
