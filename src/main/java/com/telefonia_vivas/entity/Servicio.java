@@ -17,7 +17,7 @@ public class Servicio {
     private Long idServicio;
 
     @Column(name = ConstanteServicio.NOMBRE, length = 100, nullable = false)
-    private String nombre;
+    private String nombreServicio;
 
     @Column(name = ConstanteServicio.DESCRIPCION, length = 255)
     private String descripcion;

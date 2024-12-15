@@ -1,4 +1,4 @@
-package com.telefonia_vivas.service.validation;
+package com.telefonia_vivas.service.validation.validadorcomuna;
 
 import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.constants.ConstanteRegion;

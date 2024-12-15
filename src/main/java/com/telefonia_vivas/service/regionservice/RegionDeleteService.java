@@ -2,7 +2,7 @@ package com.telefonia_vivas.service.regionservice;
 
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.RegionRepository;
-import com.telefonia_vivas.service.validation.ValidadorRegion;
+import com.telefonia_vivas.service.validation.validadorregio.ValidadorRegion;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

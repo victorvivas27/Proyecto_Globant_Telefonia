@@ -1,4 +1,4 @@
-package com.telefonia_vivas.service.mapper;
+package com.telefonia_vivas.service.mapper.fabricacomuna;
 
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
