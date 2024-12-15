@@ -1,4 +1,4 @@
-package com.telefonia_vivas.service.mapper;
+package com.telefonia_vivas.service.mapper.fabricaregion;
 
 import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.entity.Region;

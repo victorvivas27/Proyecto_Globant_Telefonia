@@ -16,7 +16,8 @@ public class MessageConfig {
                 "classpath:ValidationMessagesRegion",
                 "classpath:ValidationMessagesPersona",
                 "classpath:ValidationMessagesDireccion",
-                "classpath:ValidationMessagesComuna"
+                "classpath:ValidationMessagesComuna",
+                "classpath:ValidationMessagesServicio"
         );
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;

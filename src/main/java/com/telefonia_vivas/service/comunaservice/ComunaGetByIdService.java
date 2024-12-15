@@ -4,7 +4,7 @@ import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.ComunaRepository;
-import com.telefonia_vivas.service.validation.ValidadorComuna;
+import com.telefonia_vivas.service.validation.validadorcomuna.ValidadorComuna;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
