@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @AllArgsConstructor
@@ -32,5 +34,20 @@ public class ServicioController {
                         HttpStatus.CREATED.value(),
                         servicioDtoSalida
                 ));
+    }
+
+
+    @GetMapping("/listar")
+    public ResponseEntity<ApiResponse<List<ServicioDtoSalida>>> listarServicio() {
+
+        List<ServicioDtoSalida> servicioDtoSalidas = servicioService.listarServicio();
+
+        ApiResponse<List<ServicioDtoSalida>> response = new ApiResponse<>(
+                ConstanteServicio.SERVICIO_LIST,
+                HttpStatus.OK.value(),
+                servicioDtoSalidas
+        );
+
+        return ResponseEntity.ok(response);
     }
 }
