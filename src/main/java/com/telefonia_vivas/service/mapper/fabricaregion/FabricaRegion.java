@@ -26,9 +26,10 @@ public class FabricaRegion {
      * @param regionExistente    Instancia de Region existente a modificar.
      * @return La instancia modificada de Region.
      */
-    public Region regionModificar(RegionDtoModificar regionDtoModificar, Region regionExistente) {
+    public Region regionModificar(
+            RegionDtoModificar regionDtoModificar, Region regionExistente) {
         regionExistente.setNombreRegion(regionDtoModificar.getNombreRegion());
-        // Modifica otros campos según sea necesario
+
         return regionExistente;
     }
 }
