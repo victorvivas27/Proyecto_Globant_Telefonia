@@ -85,4 +85,19 @@ public class ServicioController {
                 ));
     }
 
+
+    @DeleteMapping("/eliminar/{idServicio}")
+    public ResponseEntity<ApiResponse<Long>> eliminarServicio(
+            @PathVariable Long idServicio) throws ResourceNotFoundException {
+
+        servicioService.eliminarServicio(idServicio);
+
+        ApiResponse<Long> response = new ApiResponse(
+                ConstanteServicio.SERVICIO_ELIMINADA,
+                HttpStatus.OK.value(),
+                idServicio
+        );
+        return ResponseEntity.ok(response);
+    }
+
 }
