@@ -1,7 +1,6 @@
 package com.telefonia_vivas.abstracts;
 
 import com.telefonia_vivas.constants.ConstanteCliente;
-import com.telefonia_vivas.constants.ConstantePersona;
 import com.telefonia_vivas.entity.Direccion;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,13 +16,13 @@ import java.util.Date;
 @Getter
 @Setter
 public class Persona {
-    @Column(name = ConstantePersona.NOMBRE, length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String nombre;
 
-    @Column(name = ConstantePersona.FECHA_NACIMIENTO, nullable = false)
+    @Column(nullable = false)
     private Date fechaNacimiento;
 
-    @Column(name = ConstantePersona.RUN, length = 15, nullable = false, unique = true)
+    @Column(length = 15, nullable = false, unique = true)
     private String run;
 
     @OneToOne(cascade = CascadeType.ALL)

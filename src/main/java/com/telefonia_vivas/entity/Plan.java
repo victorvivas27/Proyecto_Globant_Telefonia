@@ -18,7 +18,7 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlan;
 
-    @Column(name = ConstantePlan.PRECIO, length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private Double precio;
 
 

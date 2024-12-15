@@ -16,12 +16,16 @@ import java.util.Set;
 @Table(name = ConstanteRegion.REGIONES)
 public class Region {
 
-    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(
+            mappedBy = ConstanteRegion.REGION,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true)
     final private Set<Comuna> comunas = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegion;
-    @Column(name = ConstanteRegion.NOMBRE_REGION, length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false, unique = true)
     private String nombreRegion;
 
 

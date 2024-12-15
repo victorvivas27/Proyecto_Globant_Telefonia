@@ -17,10 +17,10 @@ public class Direccion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDireccion;
 
-    @Column(name = ConstanteDireccion.CALLE, length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String calle;
 
-    @Column(name = ConstanteDireccion.NUMERO, nullable = false)
+    @Column(nullable = false)
     private String numero;
 
     @ManyToOne(optional = false)
