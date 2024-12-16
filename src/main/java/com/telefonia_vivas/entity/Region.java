@@ -22,9 +22,11 @@ public class Region {
             fetch = FetchType.EAGER,
             orphanRemoval = true)
     final private Set<Comuna> comunas = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRegion;
+
     @Column(length = 100, nullable = false, unique = true)
     private String nombreRegion;
 

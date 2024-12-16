@@ -1,5 +1,6 @@
 package com.telefonia_vivas.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.telefonia_vivas.constants.ConstantePlan;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,11 +19,15 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlan;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100, unique = true, nullable = false)
+    private String nombrePlan;
+
+    @Column(nullable = false)
     private Double precio;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     @JoinTable(
             name = ConstantePlan.PLAN_SERVICIOS,
             joinColumns = @JoinColumn(name = ConstantePlan.PLAN_ID),
@@ -30,7 +35,5 @@ public class Plan {
     )
     private Set<Servicio> servicios;
 
-    @OneToMany(mappedBy = ConstantePlan.PLAN, cascade = CascadeType.ALL)
-    private Set<Contrato> contratos;
 
 }
