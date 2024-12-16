@@ -5,7 +5,6 @@ import com.telefonia_vivas.dto.entrada.ClienteDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ClienteDtoModificar;
 import com.telefonia_vivas.dto.salida.ClienteDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.interfaces.IClienteController;
 import com.telefonia_vivas.service.ClienteService;
 import com.telefonia_vivas.util.ApiResponse;
 import jakarta.validation.Valid;
@@ -20,10 +19,10 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/cliente")
-public class ClienteController implements IClienteController {
+public class ClienteController {
     private final ClienteService clienteService;
 
-    @Override
+
     @PostMapping("/crear")
     public ResponseEntity<ApiResponse<ClienteDtoSalida>> crearCliente(
             @RequestBody @Valid ClienteDtoEntrada clienteDtoEntrada) {
@@ -41,22 +40,21 @@ public class ClienteController implements IClienteController {
     }
 
 
-    @Override
     public ResponseEntity<ApiResponse<List<ClienteDtoSalida>>> listarClientes() {
         return null;
     }
 
-    @Override
+
     public ResponseEntity<ApiResponse<ClienteDtoSalida>> buscarClienteID(Long idCliente) throws ResourceNotFoundException {
         return null;
     }
 
-    @Override
+
     public ResponseEntity<ApiResponse<ClienteDtoSalida>> clienteModificar(ClienteDtoModificar toClienteModificar) throws ResourceNotFoundException {
         return null;
     }
 
-    @Override
+
     public ResponseEntity<ApiResponse<Long>> eliminarCliente(Long idCliente) throws ResourceNotFoundException {
         return null;
     }

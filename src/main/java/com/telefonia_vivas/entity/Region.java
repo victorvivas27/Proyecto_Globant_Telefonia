@@ -22,7 +22,7 @@ public class Region {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true)
-    @JsonBackReference
+    @JsonBackReference //Evita referencia circular
     final private Set<Comuna> comunas = new HashSet<>();
 
     @Id

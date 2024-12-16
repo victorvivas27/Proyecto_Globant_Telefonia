@@ -19,6 +19,7 @@ public class RegionGetByIdService {
 
 
     public RegionDtoSalida obtenerRegionPorId(Long idRegion) throws ResourceNotFoundException {
+
         validadorRegion.validarIdRegion(idRegion);
 
         Region region = regionRepository.findById(idRegion).orElse(null);

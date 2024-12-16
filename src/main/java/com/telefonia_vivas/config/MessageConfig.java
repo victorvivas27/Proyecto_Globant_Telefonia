@@ -10,7 +10,9 @@ public class MessageConfig {
 
     @Bean
     public MessageSource messageSource() {
+
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+
         messageSource.setBasenames(
 
                 "classpath:ValidationMessagesRegion",
@@ -21,6 +23,7 @@ public class MessageConfig {
                 "classpath:ValidationMessagesPlan"
         );
         messageSource.setDefaultEncoding("UTF-8");
+
         return messageSource;
     }
 }

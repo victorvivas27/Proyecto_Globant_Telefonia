@@ -30,7 +30,7 @@ public class ValidadorPlan {
             throw new IllegalArgumentException(ConstantePlan.NOMBRE_PLAN_NOT_NULL);
         }
 
-        // Verificar si el nombre ya existe en otro plan, excluyendo el plan que se está modificando
+
         if (planRepository.existsByNombrePlanAndIdPlanNot(nombrePlan, idPlan)) {
             throw new NombreExistenteException(ConstantePlan.NOMBRE_EXISTE);
         }
@@ -49,7 +49,7 @@ public class ValidadorPlan {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         ConstantePlan.ID_PLAN_NO_EXISTE + planDtoModificar.getIdPlan()));
 
-        // Verificar si el nombre del plan ha cambiado
+
         if (!planExistente.getNombrePlan().equals(planDtoModificar.getNombrePlan())) {
             validateNombrePlanModificacion(planDtoModificar.getNombrePlan(), planDtoModificar.getIdPlan());
         }

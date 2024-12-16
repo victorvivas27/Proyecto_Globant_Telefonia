@@ -5,7 +5,6 @@ import com.telefonia_vivas.dto.entrada.RegionDtoEntrada;
 import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
 import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.interfaces.IRegionController;
 import com.telefonia_vivas.service.RegionService;
 import com.telefonia_vivas.util.ApiResponse;
 import jakarta.validation.Valid;
@@ -20,10 +19,10 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/region")
-public class RegionController implements IRegionController {
+public class RegionController {
     private final RegionService regionService;
 
-    @Override
+
     @PostMapping("/crear")
     public ResponseEntity<ApiResponse<RegionDtoSalida>> crearRegion(
             @RequestBody @Valid RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
@@ -39,7 +38,7 @@ public class RegionController implements IRegionController {
                 ));
     }
 
-    @Override
+
     @GetMapping("/listar")
     public ResponseEntity<ApiResponse<List<RegionDtoSalida>>> listarRegion() {
 
@@ -54,7 +53,7 @@ public class RegionController implements IRegionController {
         return ResponseEntity.ok(response);
     }
 
-    @Override
+
     @GetMapping("/buscar/{idRegion}")
     public ResponseEntity<ApiResponse<RegionDtoSalida>> buscarRegionID(
             @PathVariable Long idRegion) throws ResourceNotFoundException {
@@ -71,7 +70,7 @@ public class RegionController implements IRegionController {
         return ResponseEntity.ok().body(response);
     }
 
-    @Override
+
     @PutMapping("/modificar")
     public ResponseEntity<ApiResponse<RegionDtoSalida>> regionModificar(
             @RequestBody @Valid RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
@@ -87,7 +86,7 @@ public class RegionController implements IRegionController {
                 ));
     }
 
-    @Override
+
     @DeleteMapping("/eliminar/{idRegion}")
     public ResponseEntity<ApiResponse<Long>> eliminarRegion(
             @PathVariable Long idRegion) throws ResourceNotFoundException {

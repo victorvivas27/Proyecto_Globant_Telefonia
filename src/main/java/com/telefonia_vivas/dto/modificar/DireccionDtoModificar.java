@@ -3,7 +3,13 @@ package com.telefonia_vivas.dto.modificar;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DireccionDtoModificar {
 
     @NotNull(message = "{validation.direccion.idDireccion.not_null}")
@@ -16,7 +22,6 @@ public class DireccionDtoModificar {
     @NotNull(message = "{validation.direccion.numero.not_null}")
     @Pattern(regexp = "^\\d+$", message = "{validation.direccion.numero.pattern}")
     private String numero;
-
 
 
 }

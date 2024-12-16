@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = ConstantePlan.PLANES)
 public class Plan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlan;
