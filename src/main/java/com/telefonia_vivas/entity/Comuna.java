@@ -1,5 +1,6 @@
 package com.telefonia_vivas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.telefonia_vivas.constants.ConstanteComuna;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,7 @@ public class Comuna {
 
     @ManyToOne
     @JoinColumn(name = "id_region")
+    @JsonBackReference
     private Region region;
 
 }
