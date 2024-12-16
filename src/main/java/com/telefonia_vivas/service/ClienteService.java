@@ -6,7 +6,6 @@ import com.telefonia_vivas.dto.modificar.ClienteDtoModificar;
 import com.telefonia_vivas.dto.salida.ClienteDtoSalida;
 import com.telefonia_vivas.entity.Cliente;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.interfaces.ICliente;
 import com.telefonia_vivas.repository.ClienteRepository;
 import com.telefonia_vivas.util.SalidaJson;
 import jakarta.transaction.Transactional;
@@ -21,14 +20,14 @@ import java.util.List;
 @Service
 @Transactional
 @AllArgsConstructor
-public class ClienteService implements ICliente {
+public class ClienteService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClienteService.class);
     private final ClienteRepository clienteRepository;
     private final ModelMapper modelMapper;
     private final ClienteServiceSave clienteServiceSave;
 
-    @Override
+
     public ClienteDtoSalida crearCliente(ClienteDtoEntrada clienteDtoEntrada) {
 
         Cliente cliente = modelMapper.map(clienteDtoEntrada, Cliente.class);
@@ -41,22 +40,22 @@ public class ClienteService implements ICliente {
         return toClienteSalida;
     }
 
-    @Override
+
     public List<ClienteDtoSalida> listarClientes() {
         return List.of();
     }
 
-    @Override
+
     public ClienteDtoSalida obtenerClientePorId(Long idCliente) throws ResourceNotFoundException {
         return null;
     }
 
-    @Override
+
     public ClienteDtoSalida actualizarCliente(ClienteDtoModificar ClienteDtoModificar) throws ResourceNotFoundException {
         return null;
     }
 
-    @Override
+
     public void eliminarCliente(Long idCliente) throws ResourceNotFoundException {
 
     }

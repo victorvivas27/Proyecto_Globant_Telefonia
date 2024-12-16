@@ -18,6 +18,7 @@ public class RegionDeleteService {
     private final ValidadorRegion validadorRegion;
 
     public void eliminarRegion(Long idRegion) throws ResourceNotFoundException {
+
         validadorRegion.validarIdRegion(idRegion);
 
         regionRepository.deleteById(idRegion);

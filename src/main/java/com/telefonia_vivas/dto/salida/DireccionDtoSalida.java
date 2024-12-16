@@ -1,9 +1,7 @@
 package com.telefonia_vivas.dto.salida;
 
-import com.telefonia_vivas.constants.ConstanteDireccion;
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.entity.Region;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,6 @@ public class DireccionDtoSalida {
 
 
     private String numero;
-
 
 
     private Region region;

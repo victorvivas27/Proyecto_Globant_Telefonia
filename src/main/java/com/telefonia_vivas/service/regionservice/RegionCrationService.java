@@ -26,7 +26,7 @@ public class RegionCrationService {
 
     public RegionDtoSalida crearRegion(RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
 
-        validadorRegion.validateRegionDto(regionDtoEntrada);
+        validadorRegion.validateNombreRegion(regionDtoEntrada.getNombreRegion());
 
         Region regionCrear = fabricaRegion.regionCrear(regionDtoEntrada);
 

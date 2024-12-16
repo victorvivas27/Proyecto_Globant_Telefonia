@@ -5,7 +5,6 @@ import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.interfaces.IComunaController;
 import com.telefonia_vivas.service.ComunaService;
 import com.telefonia_vivas.util.ApiResponse;
 import jakarta.validation.Valid;
@@ -20,11 +19,11 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/comuna")
-public class ComunaController implements IComunaController {
+public class ComunaController {
 
     private final ComunaService comunaService;
 
-    @Override
+
     @PostMapping("/crear")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> crearComuna(
             @RequestBody @Valid ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
@@ -43,7 +42,7 @@ public class ComunaController implements IComunaController {
 
     }
 
-    @Override
+
     @GetMapping("/listar")
     public ResponseEntity<ApiResponse<List<ComunaDtoSalida>>> listarComuna() {
         List<ComunaDtoSalida> comunaDtoSalidas = comunaService.listarComuna();
@@ -57,7 +56,7 @@ public class ComunaController implements IComunaController {
         return ResponseEntity.ok(response);
     }
 
-    @Override
+
     @GetMapping("/buscar/{idComuna}")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> buscarComunaID(
             @PathVariable Long idComuna) throws ResourceNotFoundException {
@@ -74,7 +73,7 @@ public class ComunaController implements IComunaController {
         return ResponseEntity.ok().body(response);
     }
 
-    @Override
+
     @PutMapping("/modificar")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> comunaModificar(
             @RequestBody @Valid ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
@@ -90,7 +89,7 @@ public class ComunaController implements IComunaController {
                 ));
     }
 
-    @Override
+
     @DeleteMapping("/eliminar/{idComuna}")
     public ResponseEntity<ApiResponse<Long>> eliminarComuna(
             @PathVariable Long idComuna) throws ResourceNotFoundException {
@@ -102,6 +101,7 @@ public class ComunaController implements IComunaController {
                 HttpStatus.OK.value(),
                 idComuna
         );
+
         return ResponseEntity.ok(response);
     }
 }

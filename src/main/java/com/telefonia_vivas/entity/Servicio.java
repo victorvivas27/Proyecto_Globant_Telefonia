@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = ConstanteServicio.SERVICIOS)
 public class Servicio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idServicio;

@@ -12,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name = ConstanteContrato.CONTRATOS)
 public class Contrato {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContrato;

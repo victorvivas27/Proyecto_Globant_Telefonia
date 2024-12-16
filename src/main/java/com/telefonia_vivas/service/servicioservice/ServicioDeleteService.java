@@ -5,7 +5,6 @@ import com.telefonia_vivas.repository.ServicioRepository;
 import com.telefonia_vivas.service.validation.validadorservicio.ValidadorServicio;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class ServicioDeleteService {
 
-    private final ModelMapper modelMapper;
     private final ServicioRepository servicioRepository;
     private final ValidadorServicio validadorServicio;
 

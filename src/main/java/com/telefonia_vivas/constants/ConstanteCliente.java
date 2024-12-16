@@ -3,9 +3,6 @@ package com.telefonia_vivas.constants;
 public class ConstanteCliente {
     public static final String CLIENTES = "CLIENTES";
     public static final String DIRECCION_ID = "DIRECCION_ID";
-    public static final String CONTRATO = "CONTRATO";
-    public static final String CLIENTE_ID = "CLIENTE_ID";
-    public static final String PLAN_ID = "PLAN_ID";
     public static final String CLIENTE = "cliente";
     public static final String CLIENTE_CREADO = "Cliente Creado";
     public static final String LISTA_CLIENTES = "Lista de clientes exitosa";
