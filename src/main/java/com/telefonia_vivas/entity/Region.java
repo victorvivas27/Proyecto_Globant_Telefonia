@@ -1,5 +1,6 @@
 package com.telefonia_vivas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.telefonia_vivas.constants.ConstanteRegion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +22,7 @@ public class Region {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true)
+    @JsonBackReference
     final private Set<Comuna> comunas = new HashSet<>();
 
     @Id

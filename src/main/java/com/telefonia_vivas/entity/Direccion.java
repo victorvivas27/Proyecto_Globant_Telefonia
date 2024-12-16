@@ -1,5 +1,6 @@
 package com.telefonia_vivas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.telefonia_vivas.constants.ConstanteDireccion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,9 +26,11 @@ public class Direccion {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = ConstanteDireccion.REGION_ID)
+    @JsonBackReference
     private Region region;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = ConstanteDireccion.COMUNA_ID)
+    @JsonBackReference
     private Comuna comuna;
 }
