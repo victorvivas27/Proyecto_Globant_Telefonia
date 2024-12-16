@@ -1,17 +1,13 @@
-package com.telefonia_vivas.dto.entrada;
+package com.telefonia_vivas.dto.modificar;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.*;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class DireccionDtoEntrada {
+public class DireccionDtoModificar {
+
+    @NotNull(message = "{validation.direccion.idDireccion.not_null}")
+    private Long idDireccion;
 
     @NotNull(message = "{validation.direccion.calle.not_null}")
     @Size(min = 3, max = 100, message = "{validation.direccion.calle.size}")
@@ -22,9 +18,5 @@ public class DireccionDtoEntrada {
     private String numero;
 
 
-    @NotNull(message = "{validation.comuna.idRegion.not_null}")
-    private Long idRegion;
 
-    @NotNull(message = "{validation.comuna.idComuna.not_null}")
-    private Long idComuna;
 }
