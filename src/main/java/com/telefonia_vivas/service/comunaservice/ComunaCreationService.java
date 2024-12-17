@@ -23,8 +23,8 @@ public class ComunaCreationService {
     private final FabricaSalidaComuna fabricaSalidaComuna;
 
     public ComunaDtoSalida crearComuna(ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
-
-        Region region = validadorComuna.validateComunaDto(comunaDtoEntrada);
+        Region region = null;
+        validadorComuna.validateNombreComuna(comunaDtoEntrada.getNombreComuna());
 
         Comuna comuna = fabricaComuna.comunaAgregar(comunaDtoEntrada, region);
 

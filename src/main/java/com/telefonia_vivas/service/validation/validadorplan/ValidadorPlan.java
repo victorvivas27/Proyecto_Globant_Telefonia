@@ -36,10 +36,14 @@ public class ValidadorPlan {
         }
     }
 
-    public void validarIdPlan(Long idPlan) throws ResourceNotFoundException {
-        if (idPlan == null || !planRepository.existsById(idPlan)) {
-            throw new ResourceNotFoundException(ConstantePlan.ID_PLAN_NO_EXISTE + idPlan);
+
+    public Plan validarIdPlan(Long idPlan) throws ResourceNotFoundException {
+        if (idPlan == null) {
+            throw new IllegalArgumentException(ConstantePlan.ID_PLAN_NO_EXISTE);
         }
+        return planRepository.findById(idPlan)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        ConstantePlan.ID_PLAN_NO_EXISTE + idPlan));
     }
 
     public void validatePlanDtoModificar(PlanDtoModificar planDtoModificar) throws ResourceNotFoundException {
