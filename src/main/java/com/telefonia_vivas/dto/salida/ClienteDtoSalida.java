@@ -1,7 +1,7 @@
 package com.telefonia_vivas.dto.salida;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.telefonia_vivas.entity.Contrato;
-import com.telefonia_vivas.entity.Direccion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,12 +19,12 @@ public class ClienteDtoSalida {
     private Long idCliente;
 
     private String nombre;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
     private String run;
 
     private List<Contrato> contratos;
 
-    private Direccion direccion;
+    private DireccionDtoSalida direccion;
 }
