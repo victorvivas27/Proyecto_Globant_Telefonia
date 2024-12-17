@@ -1,18 +1,12 @@
 package com.telefonia_vivas.service;
 
-import com.telefonia_vivas.constants.ConstanteCliente;
 import com.telefonia_vivas.dto.entrada.ClienteDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ClienteDtoModificar;
 import com.telefonia_vivas.dto.salida.ClienteDtoSalida;
-import com.telefonia_vivas.entity.Cliente;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.repository.ClienteRepository;
-import com.telefonia_vivas.util.SalidaJson;
+import com.telefonia_vivas.service.clienteservice.ClienteCreationService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,22 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ClienteService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClienteService.class);
-    private final ClienteRepository clienteRepository;
-    private final ModelMapper modelMapper;
-    private final ClienteServiceSave clienteServiceSave;
+    private final ClienteCreationService clienteCreationService;
 
 
-    public ClienteDtoSalida crearCliente(ClienteDtoEntrada clienteDtoEntrada) {
+    public ClienteDtoSalida crearCliente(ClienteDtoEntrada clienteDtoEntrada) throws ResourceNotFoundException {
 
-        Cliente cliente = modelMapper.map(clienteDtoEntrada, Cliente.class);
-        Cliente clienteCreado = clienteServiceSave.crearCliente(cliente);
+        return clienteCreationService.crearCliente(clienteDtoEntrada);
 
-        ClienteDtoSalida toClienteSalida = modelMapper.map(clienteCreado, ClienteDtoSalida.class);
-
-        LOGGER.info(ConstanteCliente.CLIENTE + "\n" + SalidaJson.toString(toClienteSalida));
-
-        return toClienteSalida;
     }
 
 

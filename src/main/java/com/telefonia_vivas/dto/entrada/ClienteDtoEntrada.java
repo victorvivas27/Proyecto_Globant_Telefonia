@@ -30,7 +30,7 @@ public class ClienteDtoEntrada {
     private String run;
 
     @Valid
-    @NotNull(message = "{validation.persona.direccion.not_null}")
+    @NotNull(message = "{validation.direccion.not_null}")
     private DireccionDtoEntrada direccion;
 
 }
