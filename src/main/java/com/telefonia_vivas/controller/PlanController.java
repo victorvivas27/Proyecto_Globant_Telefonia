@@ -41,7 +41,7 @@ public class PlanController {
     @PostMapping("/{idPlan}/servicios/{idServicio}")
     public ResponseEntity<PlanDtoSalida> agregarServicioAPlan(
             @PathVariable Long idPlan,
-            @PathVariable Long idServicio) {
+            @PathVariable Long idServicio) throws ResourceNotFoundException {
         PlanDtoSalida planDtoSalida = planService.agregarServicioAPlan(idPlan, idServicio);
 
         return ResponseEntity

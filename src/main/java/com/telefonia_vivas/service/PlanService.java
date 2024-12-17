@@ -53,7 +53,8 @@ public class PlanService {
 
     }
 
-    public PlanDtoSalida agregarServicioAPlan(Long idPlan, Long idServicio) {
+    public PlanDtoSalida agregarServicioAPlan(Long idPlan, Long idServicio) throws ResourceNotFoundException {
+
         return planYServicio.agregarServicioAPlan(idPlan, idServicio);
     }
 }

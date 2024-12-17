@@ -13,4 +13,6 @@ public interface ComunaRepository extends JpaRepository<Comuna, Long> {
     @Modifying
     @Query("DELETE FROM Comuna c WHERE c.id = :idComuna")
     void deleteById(@Param("idComuna") Long idComuna);
+
+    boolean existsByNombreComunaAndIdComunaNot(String nombreComuna, Long idComuna);
 }

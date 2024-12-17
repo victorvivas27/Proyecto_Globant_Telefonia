@@ -10,6 +10,8 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long> {
 
     boolean existsByNombreServicio(String nombreServicio);
 
+    boolean existsByNombreServicioAndIdServicioNot(String nombreServicio, Long idServicio);
+
     @Modifying
     @Query("DELETE FROM Servicio s WHERE s.id = :idServicio")
     void deleteById(@Param("idServicio") Long idServicio);
