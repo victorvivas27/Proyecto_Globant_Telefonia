@@ -5,6 +5,8 @@ import com.telefonia_vivas.dto.modificar.ClienteDtoModificar;
 import com.telefonia_vivas.dto.salida.ClienteDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.service.clienteservice.ClienteCreationService;
+import com.telefonia_vivas.service.clienteservice.ClienteDeleteService;
+import com.telefonia_vivas.service.clienteservice.ClienteListService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.List;
 public class ClienteService {
 
     private final ClienteCreationService clienteCreationService;
+    private final ClienteListService clienteListService;
+    private final ClienteDeleteService clienteDeleteService;
 
 
     public ClienteDtoSalida crearCliente(ClienteDtoEntrada clienteDtoEntrada) throws ResourceNotFoundException {
@@ -27,7 +31,7 @@ public class ClienteService {
 
 
     public List<ClienteDtoSalida> listarClientes() {
-        return List.of();
+        return clienteListService.listarClientes();
     }
 
 
@@ -42,6 +46,6 @@ public class ClienteService {
 
 
     public void eliminarCliente(Long idCliente) throws ResourceNotFoundException {
-
+        clienteDeleteService.eliminarCliente(idCliente);
     }
 }

@@ -11,4 +11,5 @@ public class ConstanteCliente {
     public static final String CLIENTE_ELIMINADO = "Cliente eliminado";
     public static final String CLIENTE_ID_OBLIGATORIO = "El idCliente es obligatorio";
     public static final String CLIENTE_ID_NO_ENCONTRADO = "No se encontró el cliente con ID: ";
+
 }

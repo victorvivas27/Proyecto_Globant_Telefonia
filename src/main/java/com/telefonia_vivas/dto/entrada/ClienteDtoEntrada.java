@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class ClienteDtoEntrada {
 
     @NotNull(message = "{validation.persona.fechaNacimiento.not_null}")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @NotNull(message = "{validation.persona.run.not_null}")
     @Size(min = 9, max = 9, message = "{validation.persona.run.size}")

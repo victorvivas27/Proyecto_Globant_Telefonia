@@ -2,15 +2,13 @@ package com.telefonia_vivas.dto.salida;
 
 import com.telefonia_vivas.entity.Comuna;
 import com.telefonia_vivas.entity.Region;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class DireccionDtoSalida {
 
 

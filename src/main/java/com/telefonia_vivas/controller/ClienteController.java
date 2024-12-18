@@ -39,9 +39,18 @@ public class ClienteController {
                 ));
     }
 
-
+    @GetMapping
     public ResponseEntity<ApiResponse<List<ClienteDtoSalida>>> listarClientes() {
-        return null;
+
+        List<ClienteDtoSalida> clienteDtoSalidas = clienteService.listarClientes();
+
+        ApiResponse<List<ClienteDtoSalida>> response = new ApiResponse<>(
+                ConstanteCliente.LISTA_CLIENTES,
+                HttpStatus.OK.value(),
+                clienteDtoSalidas
+        );
+
+        return ResponseEntity.ok(response);
     }
 
 
@@ -54,8 +63,17 @@ public class ClienteController {
         return null;
     }
 
+    @DeleteMapping("{idCliente}")
+    public ResponseEntity<ApiResponse<Long>> eliminarCliente(
+            @PathVariable Long idCliente) throws ResourceNotFoundException {
+        clienteService.eliminarCliente(idCliente);
 
-    public ResponseEntity<ApiResponse<Long>> eliminarCliente(Long idCliente) throws ResourceNotFoundException {
-        return null;
+        ApiResponse<Long> response = new ApiResponse(
+                ConstanteCliente.CLIENTE_ELIMINADO,
+                HttpStatus.OK.value(),
+                idCliente
+        );
+        return ResponseEntity.ok(response);
     }
 }
+

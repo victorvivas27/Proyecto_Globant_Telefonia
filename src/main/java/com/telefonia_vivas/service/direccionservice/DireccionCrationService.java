@@ -13,7 +13,6 @@ import com.telefonia_vivas.service.validation.validadorcomuna.ValidadorComuna;
 import com.telefonia_vivas.service.validation.validadorregio.ValidadorRegion;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DireccionCrationService {
 
-    private final ModelMapper modelMapper;
+
     private final DireccionRepository direccionRepository;
     private final FabricaDireccion fabricaDireccion;
     private final FabricaSalidaDireccion fabricaSalidaDireccion;

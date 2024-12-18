@@ -1,5 +1,6 @@
 package com.telefonia_vivas.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.telefonia_vivas.constants.ConstanteContrato;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,7 @@ public class Contrato {
 
     @ManyToOne
     @JoinColumn(name = ConstanteContrato.CLIENTE_ID, nullable = false)
+    @JsonBackReference
     private Cliente cliente;
 
     @ManyToOne

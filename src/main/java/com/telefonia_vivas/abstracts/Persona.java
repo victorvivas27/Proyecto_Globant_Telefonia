@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @MappedSuperclass
 @AllArgsConstructor
@@ -20,7 +20,8 @@ public class Persona {
     private String nombre;
 
     @Column(nullable = false)
-    private Date fechaNacimiento;
+
+    private LocalDate fechaNacimiento;
 
     @Column(length = 15, nullable = false, unique = true)
     private String run;

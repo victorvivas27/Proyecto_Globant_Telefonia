@@ -10,4 +10,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     boolean existsByRun(String run);
 
     boolean existsByRunAndIdClienteNot(String run, Long idCliente);
+
+  /*  @Modifying
+    @Query("DELETE FROM Cliente c WHERE c.id = :idCliente")
+    void deleteById(@Param("idCliente") Long idCliente);*/
 }
