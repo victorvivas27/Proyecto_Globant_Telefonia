@@ -1,6 +1,6 @@
 package com.telefonia_vivas.controller;
 
-import com.telefonia_vivas.constants.ConstanteCliente;
+import com.telefonia_vivas.constants.ConstanteEstado;
 import com.telefonia_vivas.dto.entrada.EstadoDtoEntrada;
 import com.telefonia_vivas.dto.salida.EstadoDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
@@ -30,7 +30,7 @@ public class EstadoController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ApiResponse<>(
-                        ConstanteCliente.CLIENTE_CREADO,
+                        ConstanteEstado.ESTADO_CREADO,
                         HttpStatus.CREATED.value(),
                         estadoDtoSalida
                 ));

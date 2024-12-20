@@ -1,5 +1,6 @@
 package com.telefonia_vivas.validation.validadorservicio;
 
+import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.constants.ConstanteServicio;
 import com.telefonia_vivas.dto.modificar.ServicioDtoModificar;
 import com.telefonia_vivas.entity.Servicio;
@@ -37,14 +38,10 @@ public class ValidadorServicio {
         }
     }
 
-    public void validateServicioDtoModificar(ServicioDtoModificar servicioDtoModificar) throws ResourceNotFoundException {
-
-        Servicio servicioExistente = validarIdServicio(servicioDtoModificar.getIdServicio());
-
-        if (!servicioExistente.getNombreServicio().equals(servicioDtoModificar.getNombreServicio())) {
-            validateNombreServicioModificacion(
-                    servicioDtoModificar.getNombreServicio(),
-                    servicioDtoModificar.getIdServicio());
+    // Valida que el nombre de la comuna sea único al modificar
+    public void validarNombreComunaParaModificacion(String nombreServicio, Long idServicio) {
+        if (servicioRepository.existsByNombreServicioAndIdServicioNot(nombreServicio, idServicio)) {
+            throw new NombreExistenteException(ConstanteServicio.NOMBRE_EXISTE);
         }
     }
 }

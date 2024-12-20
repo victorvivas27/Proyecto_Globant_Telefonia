@@ -1,4 +1,4 @@
-package com.telefonia_vivas.factory.comunaservice;
+package com.telefonia_vivas.mapper.mappercomuna;
 
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.entity.Comuna;
@@ -19,10 +19,7 @@ public class ComunaGetByIdService {
 
     public ComunaDtoSalida obtenerComunaPorId(Long idComuna) throws ResourceNotFoundException {
 
-        validadorComuna.validarIdComuna(idComuna);
-
-        Comuna comuna = comunaRepository.findById(idComuna).orElse(null);
-
+        Comuna comuna =  validadorComuna.validarYObtenerComunaPorId(idComuna);
 
         return modelMapper.map(comuna, ComunaDtoSalida.class);
     }

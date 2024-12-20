@@ -22,7 +22,7 @@ import java.util.List;
 public class ServicioController {
     private final ServicioService servicioService;
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<ServicioDtoSalida>> crearServicio(
             @RequestBody @Valid ServicioDtoEntrada servicioDtoEntrada) throws ResourceNotFoundException {
 
@@ -38,7 +38,7 @@ public class ServicioController {
     }
 
 
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<ServicioDtoSalida>>> listarServicio() {
 
         List<ServicioDtoSalida> servicioDtoSalidas = servicioService.listarServicio();
@@ -53,7 +53,7 @@ public class ServicioController {
     }
 
 
-    @GetMapping("/buscar/{idServicio}")
+    @GetMapping("/{idServicio}")
     public ResponseEntity<ApiResponse<ServicioDtoSalida>> buscarServicioID(
             @PathVariable Long idServicio) throws ResourceNotFoundException {
 
@@ -70,7 +70,7 @@ public class ServicioController {
     }
 
 
-    @PutMapping("/modificar")
+    @PutMapping
     public ResponseEntity<ApiResponse<ServicioDtoSalida>> servicioModificar(
             @RequestBody @Valid ServicioDtoModificar servicioDtoModificar) throws ResourceNotFoundException {
 
@@ -86,7 +86,7 @@ public class ServicioController {
     }
 
 
-    @DeleteMapping("/eliminar/{idServicio}")
+    @DeleteMapping("/{idServicio}")
     public ResponseEntity<ApiResponse<Long>> eliminarServicio(
             @PathVariable Long idServicio) throws ResourceNotFoundException {
 

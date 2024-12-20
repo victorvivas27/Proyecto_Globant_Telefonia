@@ -23,7 +23,7 @@ public class PlanController {
 
     private final PlanService planService;
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<PlanDtoSalida>> crearPlan(
             @RequestBody @Valid PlanDtoEntrada planDtoEntrada) throws ResourceNotFoundException {
 
@@ -53,7 +53,7 @@ public class PlanController {
                 ).getData());
     }
 
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<PlanDtoSalida>>> listarPlan() {
 
         List<PlanDtoSalida> planDtoSalidas = planService.listarPlanes();
@@ -67,7 +67,7 @@ public class PlanController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/buscar/{idPlan}")
+    @GetMapping("/{idPlan}")
     public ResponseEntity<ApiResponse<PlanDtoSalida>> buscarPlanID(
             @PathVariable Long idPlan) throws ResourceNotFoundException {
 
@@ -83,7 +83,7 @@ public class PlanController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping("/modificar")
+    @PutMapping
     public ResponseEntity<ApiResponse<PlanDtoSalida>> planModificar(
             @RequestBody @Valid PlanDtoModificar planDtoModificar) throws ResourceNotFoundException {
 
@@ -99,7 +99,7 @@ public class PlanController {
     }
 
 
-    @DeleteMapping("/eliminar/{idPlan}")
+    @DeleteMapping("/{idPlan}")
     public ResponseEntity<ApiResponse<Long>> eliminarRegion(
             @PathVariable Long idPlan) throws ResourceNotFoundException {
 

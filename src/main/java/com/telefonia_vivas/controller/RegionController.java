@@ -23,7 +23,7 @@ public class RegionController {
     private final RegionService regionService;
 
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<RegionDtoSalida>> crearRegion(
             @RequestBody @Valid RegionDtoEntrada regionDtoEntrada) throws ResourceNotFoundException {
 
@@ -39,7 +39,7 @@ public class RegionController {
     }
 
 
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<RegionDtoSalida>>> listarRegion() {
 
         List<RegionDtoSalida> regionDtoSalidas = regionService.listarRegios();
@@ -54,7 +54,7 @@ public class RegionController {
     }
 
 
-    @GetMapping("/buscar/{idRegion}")
+    @GetMapping("{idRegion}")
     public ResponseEntity<ApiResponse<RegionDtoSalida>> buscarRegionID(
             @PathVariable Long idRegion) throws ResourceNotFoundException {
 
@@ -71,7 +71,7 @@ public class RegionController {
     }
 
 
-    @PutMapping("/modificar")
+    @PutMapping
     public ResponseEntity<ApiResponse<RegionDtoSalida>> regionModificar(
             @RequestBody @Valid RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
 
@@ -87,7 +87,7 @@ public class RegionController {
     }
 
 
-    @DeleteMapping("/eliminar/{idRegion}")
+    @DeleteMapping("{idRegion}")
     public ResponseEntity<ApiResponse<Long>> eliminarRegion(
             @PathVariable Long idRegion) throws ResourceNotFoundException {
 

@@ -9,5 +9,5 @@ public interface RegionRepository extends JpaRepository<Region, Long> {
 
     boolean existsByNombreRegion(String nombreRegion);
 
-    boolean existsByNombreRegionAndIdRegionNot( String nombreRegion,Long idRegion);
+    boolean existsByNombreRegionAndIdRegionNot(String nombreRegion, Long idRegion);
 }

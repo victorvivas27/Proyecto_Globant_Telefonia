@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContratoController {
     private final ContratoService contratoService;
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<ContratoDtoSalida>> crearContrato(
             @RequestBody @Valid ContratoDtoEntrada contratoDtoEntrada) throws ResourceNotFoundException {
 

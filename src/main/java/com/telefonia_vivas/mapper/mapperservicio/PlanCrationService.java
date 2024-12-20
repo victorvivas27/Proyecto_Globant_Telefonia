@@ -1,4 +1,4 @@
-package com.telefonia_vivas.factory.planservice;
+package com.telefonia_vivas.mapper.mapperservicio;
 
 import com.telefonia_vivas.dto.entrada.PlanDtoEntrada;
 import com.telefonia_vivas.dto.salida.PlanDtoSalida;

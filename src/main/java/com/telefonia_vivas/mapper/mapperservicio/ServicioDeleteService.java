@@ -1,4 +1,4 @@
-package com.telefonia_vivas.factory.servicioservice;
+package com.telefonia_vivas.mapper.mapperservicio;
 
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.ServicioRepository;

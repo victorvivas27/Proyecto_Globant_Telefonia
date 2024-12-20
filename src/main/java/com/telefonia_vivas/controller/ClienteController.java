@@ -25,7 +25,7 @@ public class ClienteController {
     private final ClienteService clienteService;
 
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<ClienteDtoSalida>> crearCliente(
             @RequestBody @Valid ClienteDtoEntrada clienteDtoEntrada) throws ResourceNotFoundException {
 

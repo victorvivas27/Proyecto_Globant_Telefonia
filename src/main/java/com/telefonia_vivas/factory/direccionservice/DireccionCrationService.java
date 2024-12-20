@@ -31,7 +31,7 @@ public class DireccionCrationService {
     public DireccionDtoSalida crearDireccion(DireccionDtoEntrada direccionDtoEntrada)
             throws ResourceNotFoundException {
 
-        Comuna comuna = validadorComuna.validarIdComuna(direccionDtoEntrada.getIdComuna());
+        Comuna comuna = validadorComuna.validarYObtenerComunaPorId(direccionDtoEntrada.getIdComuna());
         Region region = validadorRegion.validarIdRegion(direccionDtoEntrada.getIdRegion());
 
 

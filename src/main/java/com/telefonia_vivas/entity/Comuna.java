@@ -24,7 +24,7 @@ public class Comuna {
 
     @ManyToOne
     @JoinColumn(name = "id_region")
-    @JsonBackReference //Evita referencia circular
+
     private Region region;
 
 }

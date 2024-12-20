@@ -16,4 +16,6 @@ public class EstadoDtoEntrada {
     @Size(min = 2, max = 50, message = "{validation.estado.nombreEstado.size}")
     @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+$", message = "{validation.estado.nombreEstado.pattern}")
     private String nombreEstado;
+
+
 }

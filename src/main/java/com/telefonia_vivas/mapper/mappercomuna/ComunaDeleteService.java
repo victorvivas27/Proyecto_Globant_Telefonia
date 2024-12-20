@@ -1,4 +1,4 @@
-package com.telefonia_vivas.factory.comunaservice;
+package com.telefonia_vivas.mapper.mappercomuna;
 
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.ComunaRepository;
@@ -17,7 +17,7 @@ public class ComunaDeleteService {
 
     public void eliminarComuna(Long idComuna) throws ResourceNotFoundException {
 
-        validadorComuna.validarIdComuna(idComuna);
+        validadorComuna.validarYObtenerComunaPorId(idComuna);
 
         comunaRepository.deleteById(idComuna);
 

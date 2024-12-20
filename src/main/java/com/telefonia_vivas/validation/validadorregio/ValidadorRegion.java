@@ -1,11 +1,9 @@
 package com.telefonia_vivas.validation.validadorregio;
 
+import com.telefonia_vivas.constants.ConstanteComuna;
 import com.telefonia_vivas.constants.ConstanteRegion;
-import com.telefonia_vivas.constants.ConstanteServicio;
 import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
-import com.telefonia_vivas.dto.modificar.ServicioDtoModificar;
 import com.telefonia_vivas.entity.Region;
-import com.telefonia_vivas.entity.Servicio;
 import com.telefonia_vivas.exception.NombreExistenteException;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.repository.RegionRepository;
@@ -40,14 +38,10 @@ public class ValidadorRegion {
         }
     }
 
-    public void validateRegionDtoModificar(RegionDtoModificar regionDtoModificar) throws ResourceNotFoundException {
-
-        Region regionExistente = validarIdRegion(regionDtoModificar.getIdRegion());
-
-        if (!regionExistente.getNombreRegion().equals(regionDtoModificar.getNombreRegion())) {
-            validateNombreRegionModificacion(
-                    regionDtoModificar.getNombreRegion(),
-                    regionDtoModificar.getIdRegion());
+    // Valida que el nombre de la comuna sea único al modificar
+    public void validarNombreComunaParaModificacion(String nombreComuna, Long idComuna) {
+        if (regionRepository.existsByNombreRegionAndIdRegionNot(nombreComuna, idComuna)) {
+            throw new NombreExistenteException(ConstanteRegion.NOMBRE_EXISTE);
         }
     }
 }

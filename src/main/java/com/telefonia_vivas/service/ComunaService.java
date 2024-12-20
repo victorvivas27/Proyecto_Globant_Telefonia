@@ -4,8 +4,11 @@ import com.telefonia_vivas.dto.entrada.ComunaDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ComunaDtoModificar;
 import com.telefonia_vivas.dto.salida.ComunaDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-
-import com.telefonia_vivas.factory.comunaservice.*;
+import com.telefonia_vivas.mapper.mappercomuna.ComunaDeleteService;
+import com.telefonia_vivas.mapper.mappercomuna.ComunaGetByIdService;
+import com.telefonia_vivas.mapper.mappercomuna.ComunaListService;
+import com.telefonia_vivas.mapper.mappercomuna.ComunaUpdateService;
+import com.telefonia_vivas.mapper.mappercomuna.ComunaCreationService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

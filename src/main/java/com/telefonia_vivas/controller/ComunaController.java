@@ -24,7 +24,7 @@ public class ComunaController {
     private final ComunaService comunaService;
 
 
-    @PostMapping("/crear")
+    @PostMapping
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> crearComuna(
             @RequestBody @Valid ComunaDtoEntrada comunaDtoEntrada) throws ResourceNotFoundException {
 
@@ -43,7 +43,7 @@ public class ComunaController {
     }
 
 
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<ApiResponse<List<ComunaDtoSalida>>> listarComuna() {
         List<ComunaDtoSalida> comunaDtoSalidas = comunaService.listarComuna();
 
@@ -57,7 +57,7 @@ public class ComunaController {
     }
 
 
-    @GetMapping("/buscar/{idComuna}")
+    @GetMapping("{idComuna}")
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> buscarComunaID(
             @PathVariable Long idComuna) throws ResourceNotFoundException {
 
@@ -74,7 +74,7 @@ public class ComunaController {
     }
 
 
-    @PutMapping("/modificar")
+    @PutMapping
     public ResponseEntity<ApiResponse<ComunaDtoSalida>> comunaModificar(
             @RequestBody @Valid ComunaDtoModificar comunaDtoModificar) throws ResourceNotFoundException {
 
@@ -90,7 +90,7 @@ public class ComunaController {
     }
 
 
-    @DeleteMapping("/eliminar/{idComuna}")
+    @DeleteMapping("{idComuna}")
     public ResponseEntity<ApiResponse<Long>> eliminarComuna(
             @PathVariable Long idComuna) throws ResourceNotFoundException {
 

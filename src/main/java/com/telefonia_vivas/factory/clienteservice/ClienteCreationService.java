@@ -16,6 +16,7 @@ import com.telefonia_vivas.validation.validadorcomuna.ValidadorComuna;
 import com.telefonia_vivas.validation.validadordireccion.ValidadorDireccion;
 import com.telefonia_vivas.validation.validadorregio.ValidadorRegion;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +40,7 @@ public class ClienteCreationService {
 
         Region region = validadorRegion.validarIdRegion(direccionDtoEntrada.getIdRegion());
 
-        Comuna comuna = validadorComuna.validarIdComuna(direccionDtoEntrada.getIdComuna());
-
+        Comuna comuna = validadorComuna.validarYObtenerComunaPorId(direccionDtoEntrada.getIdComuna());
 
         Direccion direccion = fabricaDireccion.direccionCrear(direccionDtoEntrada, region, comuna);
 
@@ -52,4 +52,5 @@ public class ClienteCreationService {
 
 
     }
+
 }
