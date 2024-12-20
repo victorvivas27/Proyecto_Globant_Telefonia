@@ -4,7 +4,7 @@ import com.telefonia_vivas.dto.entrada.ServicioDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ServicioDtoModificar;
 import com.telefonia_vivas.dto.salida.ServicioDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.service.servicioservice.*;
+import com.telefonia_vivas.factory.servicioservice.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,8 @@
 package com.telefonia_vivas.dto.salida;
 
-import com.telefonia_vivas.entity.Contrato;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -20,8 +18,6 @@ public class ClienteDtoSalida {
     private LocalDate fechaNacimiento;
 
     private String run;
-
-    private List<Contrato> contratos;
 
     private DireccionDtoSalida direccion;
 }

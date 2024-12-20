@@ -7,7 +7,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
@@ -16,61 +15,64 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExeceptionHandler {
 
-    @ExceptionHandler({ResourceNotFoundException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResponse<String> manejarResourceNotFound(ResourceNotFoundException exception) {
-        return new ApiResponse<>(exception.getMessage(), HttpStatus.NOT_FOUND.value(), null);
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleResourceNotFound(ResourceNotFoundException exception) {
+        return buildResponse(exception.getMessage(), HttpStatus.NOT_FOUND, null);
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse<Map<String, String>> procesarValidacionException(MethodArgumentNotValidException exception) {
-        Map<String, String> errorMessages = new HashMap<>();
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationException(MethodArgumentNotValidException exception) {
+        Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            errorMessages.put(fieldName, errorMessage);
+            errors.put(fieldName, errorMessage);
         });
 
-        return new ApiResponse<>("Errores de validación", HttpStatus.BAD_REQUEST.value(), errorMessages);
+        return buildResponse("Errores de validación", HttpStatus.BAD_REQUEST, errors);
     }
 
     @ExceptionHandler(RunExistenteException.class)
-    public ResponseEntity<ApiResponse<String>> handleDuplicateEmailException(RunExistenteException e) {
-        ApiResponse<String> response = new ApiResponse<>(e.getMessage(), HttpStatus.BAD_REQUEST.value(), null);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    public ResponseEntity<ApiResponse<String>> handleRunExistente(RunExistenteException exception) {
+        return buildResponse(exception.getMessage(), HttpStatus.CONFLICT, null);
     }
 
     @ExceptionHandler(NombreExistenteException.class)
-    public ResponseEntity<ApiResponse<String>> handleDuplicateEmailException(NombreExistenteException e) {
-        ApiResponse<String> response = new ApiResponse<>(e.getMessage(), HttpStatus.BAD_REQUEST.value(), null);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    public ResponseEntity<ApiResponse<String>> handleNombreExistente(NombreExistenteException exception) {
+        return buildResponse(exception.getMessage(), HttpStatus.CONFLICT, null);
     }
 
     @ExceptionHandler(RegionNotFoundException.class)
-    public ResponseEntity<ApiResponse<String>> handleDuplicateEmailException(RegionNotFoundException e) {
-        ApiResponse<String> response = new ApiResponse<>(e.getMessage(), HttpStatus.BAD_REQUEST.value(), null);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    public ResponseEntity<ApiResponse<String>> handleRegionNotFound(RegionNotFoundException exception) {
+        return buildResponse(exception.getMessage(), HttpStatus.NOT_FOUND, null);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse<String> manejarDeserializacionInvalida(HttpMessageNotReadableException exception) {
-        String mensajeError = "Error en el formato del JSON enviado. " + obtenerDetalleError(exception);
-        return new ApiResponse<>(mensajeError, HttpStatus.BAD_REQUEST.value(), null);
+    public ResponseEntity<ApiResponse<String>> handleInvalidJson(HttpMessageNotReadableException exception) {
+        String errorMessage = "Error en el formato del JSON enviado. " + extractErrorDetails(exception);
+        return buildResponse(errorMessage, HttpStatus.BAD_REQUEST, null);
     }
 
-    private String obtenerDetalleError(HttpMessageNotReadableException exception) {
-        if (exception.getCause() instanceof com.fasterxml.jackson.databind.exc.InvalidFormatException) {
-            com.fasterxml.jackson.databind.exc.InvalidFormatException invalidFormatException =
-                    (com.fasterxml.jackson.databind.exc.InvalidFormatException) exception.getCause();
-            String campo = invalidFormatException.getPath().stream()
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleGenericException(Exception exception) {
+        return buildResponse("Ha ocurrido un error inesperado.", HttpStatus.INTERNAL_SERVER_ERROR, null);
+    }
+
+    private <T> ResponseEntity<ApiResponse<T>> buildResponse(String message, HttpStatus status, T data) {
+        ApiResponse<T> response = new ApiResponse<>(message, status.value(), data);
+        return ResponseEntity.status(status).body(response);
+    }
+
+    private String extractErrorDetails(HttpMessageNotReadableException exception) {
+        if (exception.getCause() instanceof com.fasterxml.jackson.databind.exc.InvalidFormatException invalidFormatException) {
+            String field = invalidFormatException.getPath().stream()
                     .findFirst()
                     .map(ref -> ref.getFieldName())
                     .orElse("campo desconocido");
-            String valorInvalido = invalidFormatException.getValue().toString();
-            return "El valor '" + valorInvalido + "' no es válido para el campo '" + campo + "'.";
+            String invalidValue = invalidFormatException.getValue().toString();
+            return "El valor '" + invalidValue + "' no es válido para el campo '" + field + "'.";
         }
         return "Detalles del error no disponibles.";
     }
+
 }

@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface RegionRepository extends JpaRepository<Region, Long> {
 
     boolean existsByNombreRegion(String nombreRegion);
+
+    boolean existsByNombreRegionAndIdRegionNot( String nombreRegion,Long idRegion);
 }

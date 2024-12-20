@@ -1,20 +1,22 @@
 package com.telefonia_vivas.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import jakarta.persistence.*;
+import lombok.*;
 
-public enum Estado {
-    ACTIVO,
-    DESACTIVADO,
-    CANCELADO,
-    PENDIENTE;
+@Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "ESTADOS")
+public class Estado {
 
-    @JsonCreator
-    public static Estado fromString(String value) {
-        for (Estado estado : Estado.values()) {
-            if (estado.name().equalsIgnoreCase(value)) {
-                return estado;
-            }
-        }
-        throw new IllegalArgumentException("Valor no válido para el estado: " + value);
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEstado;
+
+    @Column(nullable = false, unique = true)
+    private String nombreEstado;
+
 }

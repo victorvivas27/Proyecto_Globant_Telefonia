@@ -4,7 +4,7 @@ import com.telefonia_vivas.dto.entrada.PlanDtoEntrada;
 import com.telefonia_vivas.dto.modificar.PlanDtoModificar;
 import com.telefonia_vivas.dto.salida.PlanDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.service.planservice.*;
+import com.telefonia_vivas.factory.planservice.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

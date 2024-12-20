@@ -18,7 +18,9 @@ public class Contrato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContrato;
 
-    @Enumerated(EnumType.STRING)
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
 
     @ManyToOne

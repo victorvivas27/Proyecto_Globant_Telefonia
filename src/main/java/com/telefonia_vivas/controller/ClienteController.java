@@ -1,8 +1,10 @@
 package com.telefonia_vivas.controller;
 
 import com.telefonia_vivas.constants.ConstanteCliente;
+import com.telefonia_vivas.constants.ConstanteRegion;
 import com.telefonia_vivas.dto.entrada.ClienteDtoEntrada;
 import com.telefonia_vivas.dto.modificar.ClienteDtoModificar;
+import com.telefonia_vivas.dto.salida.ClienteDtoConContrato;
 import com.telefonia_vivas.dto.salida.ClienteDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
 import com.telefonia_vivas.service.ClienteService;
@@ -54,8 +56,20 @@ public class ClienteController {
     }
 
 
-    public ResponseEntity<ApiResponse<ClienteDtoSalida>> buscarClienteID(Long idCliente) throws ResourceNotFoundException {
-        return null;
+    @GetMapping("/{idCliente}")
+    public ResponseEntity<ApiResponse<ClienteDtoConContrato>> buscarClienteID(
+            @PathVariable Long idCliente) throws ResourceNotFoundException {
+
+        ClienteDtoConContrato clienteDtoConContrato = clienteService.obtenerClientePorId(idCliente);
+
+        ApiResponse<ClienteDtoConContrato> response = new ApiResponse<>(
+
+                ConstanteRegion.REGION_ENCONTRADA,
+                HttpStatus.OK.value(),
+                clienteDtoConContrato
+        );
+
+        return ResponseEntity.ok().body(response);
     }
 
 
@@ -63,7 +77,7 @@ public class ClienteController {
         return null;
     }
 
-    @DeleteMapping("{idCliente}")
+    @DeleteMapping("/{idCliente}")
     public ResponseEntity<ApiResponse<Long>> eliminarCliente(
             @PathVariable Long idCliente) throws ResourceNotFoundException {
         clienteService.eliminarCliente(idCliente);
@@ -75,5 +89,7 @@ public class ClienteController {
         );
         return ResponseEntity.ok(response);
     }
+
+
 }
 

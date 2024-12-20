@@ -4,7 +4,7 @@ import com.telefonia_vivas.dto.entrada.ContratoDtoEntrada;
 import com.telefonia_vivas.dto.salida.ContratoDtoSalida;
 import com.telefonia_vivas.entity.Estado;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.service.contratoservice.ContratoCreationService;
+import com.telefonia_vivas.factory.contratoservice.ContratoCreationService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

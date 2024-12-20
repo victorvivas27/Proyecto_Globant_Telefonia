@@ -20,7 +20,8 @@ public class MessageConfig {
                 "classpath:ValidationMessagesDireccion",
                 "classpath:ValidationMessagesComuna",
                 "classpath:ValidationMessagesServicio",
-                "classpath:ValidationMessagesPlan"
+                "classpath:ValidationMessagesPlan",
+                "classpath:ValidationMessagesEstado"
         );
         messageSource.setDefaultEncoding("UTF-8");
 

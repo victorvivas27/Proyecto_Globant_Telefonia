@@ -1,6 +1,5 @@
 package com.telefonia_vivas.dto.salida;
 
-import com.telefonia_vivas.entity.Contrato;
 import com.telefonia_vivas.entity.Estado;
 import lombok.*;
 
@@ -19,6 +18,5 @@ public class ContratoDtoSalida {
 
     private Estado estado;
 
-    public ContratoDtoSalida(Contrato contrato) {
-    }
+
 }

@@ -4,7 +4,7 @@ import com.telefonia_vivas.dto.entrada.RegionDtoEntrada;
 import com.telefonia_vivas.dto.modificar.RegionDtoModificar;
 import com.telefonia_vivas.dto.salida.RegionDtoSalida;
 import com.telefonia_vivas.exception.ResourceNotFoundException;
-import com.telefonia_vivas.service.regionservice.*;
+import com.telefonia_vivas.factory.regionservice.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
